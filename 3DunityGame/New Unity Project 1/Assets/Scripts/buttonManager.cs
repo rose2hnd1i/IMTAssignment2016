@@ -19,7 +19,7 @@ public class buttonManager : MonoBehaviour {
 	}
 	public void Instructions()
 	{
-		Application.LoadLevel ("scene1");
+		Application.LoadLevel ("instructions");
 	}
 
 
@@ -32,7 +32,7 @@ public class buttonManager : MonoBehaviour {
 	//code which is triggered when the preious button is pressed
 	public void upkey()
 	{
-		Application.LoadLevel ("scene2");
+		Application.LoadLevel ("scene3");
 	}
 	public void rightkey()
 	{
@@ -48,6 +48,17 @@ public class buttonManager : MonoBehaviour {
 	{
 		Application.LoadLevel ("menu");
 	}
+
+	//public void forwardWalk()
+	//{
+		// The current move direction in x-z
+		//private var moveDirection = Vector3.zero;
+		// The current vertical speed
+		//private var verticalSpeed = 0.0;
+		// The current x-z move speed
+		//private var moveSpeed = 0.0;
+	//moveDirection = transform.TransformDirection (Vector3.forward);
+	//}
 
 
 	//code which is triggered when the fade button is pressed
