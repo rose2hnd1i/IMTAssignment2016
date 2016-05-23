@@ -1,7 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CharController : MonoBehaviour {
+
+	//sound
+	public AudioClip fishClip;
+	private AudioSource audioSource;
+
+	public Text scoreText;
+	public Text livesText;
+
+	//sounds
+	//public AudioClip troutFish;
+	//var fishClip:AudioClip;
+	//public AudioClip fishClip;
+
+	//private Rigidbody rigbdy;
+
+
 
 	int score1;
 	//set number of lives
@@ -16,35 +33,30 @@ public class CharController : MonoBehaviour {
 
 	}
 
-	void OnGUI()
-	{
-		GUI.skin = skin;
-		GUI.color = Color.black;
-		GUI.Label (new Rect(0,0,150,30),"LEVEL 1 "); 
-		GUI.Label (new Rect(0,20,150,30),"Score : "+score1+ "/15 ");
-		GUI.Label (new Rect(0,40,150,30),"Lives : "+lives);
-
+	//sound
+	void Awake(){
+		audioSource = GetComponent <AudioSource> ();
 	}
 
 	void OnTriggerEnter(Collider otherObject)
 	{
 		// positive +
 		if (otherObject.tag == "s5") {
-			Debug.Log ("touched");
-			score1++;
+			//Debug.Log ("touched");
+			score1+=1;
 			Destroy (otherObject.gameObject);
 		}
 		if (otherObject.tag == "s6") {
-			score1++;
+			score1+=1;
 			Destroy (otherObject.gameObject);
 		}
 		if (otherObject.tag == "s3") {
-			score1++;
+			score1+=1;
 			Destroy (otherObject.gameObject);
 		}
 
 		if (otherObject.tag == "s1") {
-			score1++;
+			score1+=1;
 			Destroy (otherObject.gameObject);
 		}
 
@@ -64,15 +76,20 @@ public class CharController : MonoBehaviour {
 		//3 player modifiers 
 
 		if (otherObject.tag == "trout") {
-			//GetComponent <Animator>().SetTrigger ("turtle2");
+			score1 += 20;
 			transform.localScale += new Vector3 (10f, 10f, 10f);
-			score1 += 2;
+
+			//sound
+			audioSource.clip = fishClip;
+			audioSource.Play ();
+			Debug.Log ("fish sound trigger");
 			Destroy (otherObject.gameObject);
 		}
 
 		if (otherObject.tag == "coin") {
 			transform.localScale += new Vector3 (-10f, -10f, -10f);
-			score1 += 5;
+			score1 += 14;
+			Debug.Log ("coin collected");
 			Destroy (otherObject.gameObject);
 		}
 
@@ -81,9 +98,10 @@ public class CharController : MonoBehaviour {
 			lives++;
 			Destroy (otherObject.gameObject);
 		}
-		//if (otherObject.tag == "aid") {
-		//	transform.localScale += new Vector3 (5f, 0, 0);
-		//}
+
+		scoreText.text = "Score: " + score1 + "/15";
+		livesText.text = "Lives: " + lives;
+
 	}
 
 
@@ -94,7 +112,7 @@ public class CharController : MonoBehaviour {
 
 
 		if (score1 == 15)
-			//when the player reaches 20points wins
+			//when the player reaches points wins
 
 		{
 			//go to win level
@@ -107,12 +125,15 @@ public class CharController : MonoBehaviour {
 		}
 
 	
-		if (Input.GetKeyDown (KeyCode.L)) {
-			//the name of the trigger to happen when L is pressed in the animator inside the stick figure
-			GetComponent <Animator>().SetTrigger ("flyT");
-		}
+		//public void bottles()
+		//{
+			//the name of the trigger to happen when button is pressed in the animator 
+		//	GameObject.Find("bottle").GetComponent <Animator>().SetTrigger ("bottles");
+
+		//}
 
 	}
+
 }
 
 

@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class buttonManager : MonoBehaviour {
+
 
 
 	//code which is triggered when the next button is pressed
 	public void easy()
 	{
-		Application.LoadLevel ("lvl1");
+		SceneManager.LoadScene ("lvl1");
 	}
 	public void medium()
 	{
-		Application.LoadLevel ("scene3");
+		SceneManager.LoadScene ("scene3");
 	}
 	public void hard()
 	{
-		Application.LoadLevel ("scene1");
+		SceneManager.LoadScene ("scene1");
 	}
 	public void Instructions()
 	{
-		Application.LoadLevel ("instructions");
+		SceneManager.LoadScene ("instructions");
 	}
 
 
@@ -27,47 +29,45 @@ public class buttonManager : MonoBehaviour {
 	//code which is triggered when the preious button is pressed
 	public void leftkey()
 	{
-		Application.LoadLevel ("scene1");
+		SceneManager.LoadScene ("scene1");
 	}
 	//code which is triggered when the preious button is pressed
 	public void upkey()
 	{
-		Application.LoadLevel ("scene3");
+		SceneManager.LoadScene ("scene3");
 	}
 	public void rightkey()
 	{
-		Application.LoadLevel ("scene3");
+		SceneManager.LoadScene ("scene3");
 	}
 	public void downkey()
 	{
-		Application.LoadLevel ("scene3");
+		SceneManager.LoadScene ("scene3");
 	}
 
 
 	public void menu()
 	{
-		Application.LoadLevel ("menu");
+		SceneManager.LoadScene ("menu");
+	}
+		
+
+
+	public void bottles()
+	{
+		//the name of the trigger to happen when button is pressed in the animator
+		GameObject.Find("Bottle2").GetComponent<Animator>().SetTrigger("bottle2");
+		GameObject.Find("Bottle1").GetComponent<Animator>().SetTrigger("bottle1");
+
 	}
 
-	//public void forwardWalk()
-	//{
-		// The current move direction in x-z
-		//private var moveDirection = Vector3.zero;
-		// The current vertical speed
-		//private var verticalSpeed = 0.0;
-		// The current x-z move speed
-		//private var moveSpeed = 0.0;
-	//moveDirection = transform.TransformDirection (Vector3.forward);
-	//}
+	public void straws()
+	{
+		//the name of the trigger to happen when button is pressed in the animator
+		GameObject.Find("Straw1").GetComponent<Animator>().SetTrigger("straw1");
+		GameObject.Find("Straw2").GetComponent<Animator>().SetTrigger("straw2");
 
-
-	//code which is triggered when the fade button is pressed
-	//public void fadeButtonPressed()
-	//{
-
-	//	GameObject.Find ("Smiley").GetComponent<Animator> ().SetTrigger ("enableFade");
-
-	//}
+	}
 
 
 	// Use this for initialization
