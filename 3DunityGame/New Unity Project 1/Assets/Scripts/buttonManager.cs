@@ -6,7 +6,7 @@ public class buttonManager : MonoBehaviour {
 
 
 
-	//code which is triggered when the next button is pressed
+	//code which is triggered when the button is pressed
 	public void easy()
 	{
 		SceneManager.LoadScene ("lvl1");
@@ -24,6 +24,11 @@ public class buttonManager : MonoBehaviour {
 		SceneManager.LoadScene ("instructions");
 	}
 
+
+	public void exitmenu()
+	{
+		Application.Quit();
+	}
 
 
 
