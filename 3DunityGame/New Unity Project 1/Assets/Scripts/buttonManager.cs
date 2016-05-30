@@ -13,11 +13,11 @@ public class buttonManager : MonoBehaviour {
 	}
 	public void medium()
 	{
-		SceneManager.LoadScene ("scene3");
+		SceneManager.LoadScene ("lvl2");
 	}
 	public void hard()
 	{
-		SceneManager.LoadScene ("scene1");
+		SceneManager.LoadScene ("lvl3");
 	}
 	public void Instructions()
 	{
@@ -26,25 +26,6 @@ public class buttonManager : MonoBehaviour {
 
 
 
-	//code which is triggered when the preious button is pressed
-	public void leftkey()
-	{
-		SceneManager.LoadScene ("scene1");
-	}
-	//code which is triggered when the preious button is pressed
-	public void upkey()
-	{
-		SceneManager.LoadScene ("scene3");
-	}
-	public void rightkey()
-	{
-		SceneManager.LoadScene ("scene3");
-	}
-	public void downkey()
-	{
-		SceneManager.LoadScene ("scene3");
-	}
-
 
 	public void menu()
 	{
@@ -52,7 +33,7 @@ public class buttonManager : MonoBehaviour {
 	}
 		
 
-
+	//trigger animations parameters
 	public void bottles()
 	{
 		//the name of the trigger to happen when button is pressed in the animator
@@ -68,7 +49,14 @@ public class buttonManager : MonoBehaviour {
 		GameObject.Find("Straw2").GetComponent<Animator>().SetTrigger("straw2");
 
 	}
+		
+	public void crates()
+	{
+		//the name of the trigger to happen when button is pressed in the animator
+		GameObject.Find("Crate1").GetComponent<Animator>().SetTrigger("crate1");
+		GameObject.Find("Crate2").GetComponent<Animator>().SetTrigger("crate2");
 
+	}
 
 	// Use this for initialization
 	void Start () {

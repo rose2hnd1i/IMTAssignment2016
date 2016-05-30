@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CharController : MonoBehaviour {
 
 	//sound
 	public AudioClip fishClip;
+	public AudioClip coinClip;
+	public AudioClip healthClip;
+	public AudioClip bottleClip;
+	public AudioClip strawClip;
+	//
+
 	private AudioSource audioSource;
 
 	public Text scoreText;
@@ -20,7 +27,8 @@ public class CharController : MonoBehaviour {
 
 
 
-	int score1;
+	int score;
+	public int maxScore;
 	//set number of lives
 	public int lives;
 	public GUISkin skin;
@@ -40,23 +48,8 @@ public class CharController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider otherObject)
 	{
-		// positive +
-		if (otherObject.tag == "s5") {
-			//Debug.Log ("touched");
-			score1+=1;
-			Destroy (otherObject.gameObject);
-		}
-		if (otherObject.tag == "s6") {
-			score1+=1;
-			Destroy (otherObject.gameObject);
-		}
-		if (otherObject.tag == "s3") {
-			score1+=1;
-			Destroy (otherObject.gameObject);
-		}
-
-		if (otherObject.tag == "s1") {
-			score1+=1;
+		if (otherObject.tag == "good") {
+			score+=1;
 			Destroy (otherObject.gameObject);
 		}
 
@@ -64,11 +57,17 @@ public class CharController : MonoBehaviour {
 
 		if (otherObject.tag == "straw") {
 			lives--;
+			audioSource.clip = strawClip;
+			audioSource.Play ();
 			Destroy (otherObject.gameObject);
 		}
 		
 		if (otherObject.tag == "bottle") {
 			lives--;
+			//
+			audioSource.clip = bottleClip;
+			audioSource.Play ();
+			//
 			Destroy (otherObject.gameObject);
 		}
 
@@ -76,19 +75,23 @@ public class CharController : MonoBehaviour {
 		//3 player modifiers 
 
 		if (otherObject.tag == "trout") {
-			score1 += 20;
+			score += 2;
 			transform.localScale += new Vector3 (10f, 10f, 10f);
 
 			//sound
 			audioSource.clip = fishClip;
 			audioSource.Play ();
 			Debug.Log ("fish sound trigger");
+
 			Destroy (otherObject.gameObject);
 		}
 
 		if (otherObject.tag == "coin") {
 			transform.localScale += new Vector3 (-10f, -10f, -10f);
-			score1 += 14;
+			score += 5;
+			audioSource.clip = coinClip;
+			audioSource.Play ();
+
 			Debug.Log ("coin collected");
 			Destroy (otherObject.gameObject);
 		}
@@ -96,41 +99,30 @@ public class CharController : MonoBehaviour {
 		if (otherObject.tag == "aid") {
 			transform.localScale += new Vector3 (-20f, -20f, -20f);
 			lives++;
+
+			audioSource.clip = healthClip;
+			audioSource.Play ();
+
 			Destroy (otherObject.gameObject);
 		}
 
-		scoreText.text = "Score: " + score1 + "/15";
+		scoreText.text = "Score: " + score + "/" + maxScore;
 		livesText.text = "Lives: " + lives;
 
-	}
-
-
-
-
-	// Update is called once per frame
-	void Update () {
-
-
-		if (score1 == 15)
+		if (score >= maxScore)
 			//when the player reaches points wins
 
 		{
 			//go to win level
-			Application.LoadLevel("win");
+			SceneManager.LoadScene("win");
+
 		}
 
 		if (lives == 0) 
 		{
-			Application.LoadLevel ("lose");
+			SceneManager.LoadScene("lose");
+
 		}
-
-	
-		//public void bottles()
-		//{
-			//the name of the trigger to happen when button is pressed in the animator 
-		//	GameObject.Find("bottle").GetComponent <Animator>().SetTrigger ("bottles");
-
-		//}
 
 	}
 
